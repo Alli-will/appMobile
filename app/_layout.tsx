@@ -3,11 +3,10 @@ import { Stack } from 'expo-router';
 
 export default function RootLayout() {
   return (
-    console.log('Rotas registradas:', require('expo-router/build/views/Navigator').routes),
     <Stack>
       <Stack.Screen 
         name="index" 
-        options={{ headerShown: true }} 
+        options={{ headerShown: false }} 
       />
       <Stack.Screen 
         name="(tabs)" 

@@ -1,4 +1,4 @@
-import { View, Text, FlatList, Pressable, StyleSheet } from 'react-native';
+import { View, Text, FlatList, Pressable, StyleSheet, Image } from 'react-native'; 
 import { Link, useLocalSearchParams } from 'expo-router';
 import { data } from '../../../../data/index';
 
@@ -31,10 +31,16 @@ export default function CategoryProducts() {
               }}
               asChild
             >
-              <Pressable>
-                <Text style={styles.productText}>
-                  {item.title} - R$ {item.price.toFixed(2)}
-                </Text>
+              <Pressable style={styles.productPressable}>
+                <Image 
+                  source={{ uri: item.image }} 
+                  style={styles.productImage}
+                  resizeMode="cover"
+                />
+                <View style={styles.productInfo}>
+                  <Text style={styles.productTitle}>{item.title}</Text>
+                  <Text style={styles.productPrice}>R$ {item.price.toFixed(2)}</Text>
+                </View>
               </Pressable>
             </Link>
           </View>
@@ -44,18 +50,17 @@ export default function CategoryProducts() {
   );
 }
 
-
-
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
+    backgroundColor: '#fff'
   },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 20,
+    color: '#333'
   },
   errorText: {
     fontSize: 18,
@@ -63,12 +68,35 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   productItem: {
-    padding: 10,
-    borderBottomWidth: 1,
-    borderBottomColor: '#ccc',
+    marginBottom: 15,
+    borderRadius: 8,
+    overflow: 'hidden',
   },
-  productText: {
+  productPressable: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 12,
+    backgroundColor: '#f8f8f8',
+  },
+  productImage: {
+    width: 60,
+    height: 60,
+    borderRadius: 8,
+    marginRight: 12,
+  },
+  productInfo: {
+    flex: 1,
+  },
+  productTitle: {
     fontSize: 16,
+    fontWeight: '500',
+    color: '#333',
+    marginBottom: 4,
+  },
+  productPrice: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#2ecc71',
   },
   backButton: {
     marginTop: 20,

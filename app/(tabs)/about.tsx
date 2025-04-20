@@ -1,15 +1,31 @@
 import React from 'react';
-import { Text, View, StyleSheet, Button } from 'react-native';
-import { Link } from 'expo-router';
+import { Text, View, StyleSheet, useWindowDimensions } from 'react-native';
+
 
 export default function Index() {
+  const { width, height } = useWindowDimensions(); 
+
+
+  const responsiveFontSize = width < 400 ? 16 : 20;
+  const responsiveGap = width < 400 ? 10 : 20;
+
   return (
-    <View style={styles.container}>
-      <Text style={styles.welcome}>Bem-vindo ao Catálogo de Produtos!</Text>
-      <Text style={styles.welcome}>Desenvolvedores: Alisson Willian & Eduardo Dutra</Text>
-      <Text style={styles.welcome}>Curso: Engenharia de Software</Text>
-      <Text style={styles.welcome}>Semestre: 2025</Text>
-      <Text style={styles.welcome}>Aspiração: </Text>     
+    <View style={[styles.container, { gap: responsiveGap }]}>
+      <Text style={[styles.welcome, { fontSize: responsiveFontSize }]}>
+        Sobre Nós
+      </Text>
+      <Text style={[styles.welcome, { fontSize: responsiveFontSize }]}>
+        Desenvolvedores: Alisson Willian & Eduardo Dutra
+      </Text>
+      <Text style={[styles.welcome, { fontSize: responsiveFontSize }]}>
+        Curso: Engenharia de Software
+      </Text>
+      <Text style={[styles.welcome, { fontSize: responsiveFontSize }]}>
+        Semestre: 7º Período
+      </Text>
+      <Text style={[styles.welcome, { fontSize: responsiveFontSize }]}>
+        Aspiração: Trabalhar em grandes empresas de tecnologia
+      </Text>
     </View>
   );
 }
@@ -19,11 +35,11 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    gap: 20,
+    paddingHorizontal: 16, 
   },
   welcome: {
-    fontSize: 20,
     fontWeight: 'bold',
-    marginBottom: 20,
+    textAlign: 'center', 
+    marginBottom: 8, 
   },
 });
